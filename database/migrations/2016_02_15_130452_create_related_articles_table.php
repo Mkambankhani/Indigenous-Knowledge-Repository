@@ -13,7 +13,8 @@ class CreateRelatedArticlesTable extends Migration
     public function up()
     {
         Schema::create('Related_Articles', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('article_id');
+            $table->integer('related_article_id',11);
             $table->timestamps();
         });
     }

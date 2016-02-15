@@ -13,7 +13,8 @@ class CreateArticleViewsTable extends Migration
     public function up()
     {
         Schema::create('Article_View', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('article_views_id');
+            $table->integer('article_id',11);
             $table->timestamps();
         });
     }

@@ -13,7 +13,8 @@ class CreateVisitsTable extends Migration
     public function up()
     {
         Schema::create('Visit', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('visit_id');
+            $table->string('visit_ip_address',100);
             $table->timestamps();
         });
     }

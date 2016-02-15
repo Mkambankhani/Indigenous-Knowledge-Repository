@@ -14,6 +14,8 @@ class CreateUserLogsTable extends Migration
     {
         Schema::create('User_Logs', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id',11);
+            $table->integer('task_id',11);
             $table->timestamps();
         });
     }
