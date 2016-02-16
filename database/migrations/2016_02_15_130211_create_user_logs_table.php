@@ -12,10 +12,10 @@ class CreateUserLogsTable extends Migration
      */
     public function up()
     {
-        Schema::create('User_Logs', function (Blueprint $table) {
+        Schema::create('user_logs', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id',11);
-            $table->integer('task_id',11);
+            $table->integer('user_id',false,true)->length(11);
+            $table->integer('task_id',false,true)->length(11);
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class CreateUserLogsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('User_Logs');
+        Schema::drop('user_logs');
     }
 }

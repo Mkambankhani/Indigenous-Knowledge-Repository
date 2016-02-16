@@ -12,9 +12,9 @@ class CreateRelatedArticlesTable extends Migration
      */
     public function up()
     {
-        Schema::create('Related_Articles', function (Blueprint $table) {
+        Schema::create('related_articles', function (Blueprint $table) {
             $table->increments('article_id');
-            $table->integer('related_article_id',11);
+            $table->integer('related_article_id',false,true)->length(11);
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ class CreateRelatedArticlesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('Related_Articles');
+        Schema::drop('related_articles');
     }
 }

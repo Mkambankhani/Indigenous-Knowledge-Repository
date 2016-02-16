@@ -12,7 +12,7 @@ class CreateTaskStatusesTable extends Migration
      */
     public function up()
     {
-        Schema::create('Task_Statuses', function (Blueprint $table) {
+        Schema::create('task_statuses', function (Blueprint $table) {
             $table->increments('task_status_id',11);
             $table->string('name',100);
             $table->timestamps();
@@ -26,6 +26,6 @@ class CreateTaskStatusesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('Task_Statuses');
+        Schema::drop('task_statuses');
     }
 }

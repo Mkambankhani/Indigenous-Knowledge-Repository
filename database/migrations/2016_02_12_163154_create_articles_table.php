@@ -12,15 +12,15 @@ class CreateArticlesTable extends Migration
      */
     public function up()
     {
-        Schema::create('Article', function (Blueprint $table) {
+        Schema::create('articles', function (Blueprint $table) {
             $table->increments('article_id');
             $table->string('title',100);
             $table->text('body');
             $table->string('image_url',100);
             $table->string('video_url',100);
-            $table->integer('cat_id',11);
-            $table->integer('author_id',11);
-            $table->integer('editor_id',11);
+            $table->integer('cat_id',false,true)->length(11);
+            $table->integer('author_id',false,true)->length(11);
+            $table->integer('editor_id',false,true)->length(11);
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ class CreateArticlesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('Article');
+        Schema::drop('articles');
     }
 }

@@ -12,13 +12,13 @@ class CreateCategoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('Category', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->increments('cat_id');
             $table->string('cat_name',100);
             $table->text('cat_description');
-            $table->tinyInteger('cat_visibility',1);
-            $table->integer('added_by',11);
-            $table->integer('updated_by',11);
+            $table->tinyInteger('cat_visibility',false,true)->length(1);
+            $table->integer('added_by',false,true)->length(11);
+            $table->integer('updated_by',false,true)->length(11);
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateCategoryTable extends Migration
      */
     public function down()
     {
-        Schema::drop('Category');
+        Schema::drop('categories');
     }
 }
