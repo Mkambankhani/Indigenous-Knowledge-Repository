@@ -15,6 +15,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+ Route::get("categories","CategoriesController@index");
+ Route::get("categories/create","CategoriesController@create");
+ Route::post("categories/new","CategoriesController@newcategory");
+
+ Route::get("articles","ArticlesController@index");
+ Route::get("articles/create","ArticlesController@create");
+ Route::post("articles/new","ArticlesController@newarticle");
+ Route::get("articles/{id}","ArticlesController@show");
+
+ Route::get("tasks","TasksController@index");
+ Route::get("tasks/assign","TasksController@assign");
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -34,4 +45,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::auth();
 
     Route::get('/home', 'HomeController@index');
+
 });
+
+
