@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Task;
-
+use App\User;
+use App\Category;
 class TasksController extends Controller
 {
     //
@@ -16,7 +17,9 @@ class TasksController extends Controller
     	return view("tasks.index", compact("tasks"));
     }
     function assign(){
-    	
-    	return view("tasks.assign");
+    	$tasks = Task::all();
+    	$users = User::all();
+    	$categories = Category::all();
+    	return view("tasks.assign",compact("tasks","users","categories"));
     }
 }

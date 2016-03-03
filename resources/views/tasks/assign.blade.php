@@ -10,8 +10,10 @@
 	    	 <div class="col-lg-6 col-md-6 panel">
 	              <h5>Choose Category</h5>
 	                 <select class="form-control" name="category" id="category">
-	                    <option>History</option>
-	                    <option>Practices</option>
+	                 	 <option>All</option>
+	                     @foreach($categories as $category)
+	                        	<option value="{{$category->cat_id}}">{{$category->cat_name}}</option>
+	                        @endforeach
 	                  </select>
 	               <h5>Tasks</h5>
 	                 <div class="form-group form-horizontal">
@@ -31,8 +33,9 @@
 	        <div class="col-lg-6 col-md-6">
 	                    <h5>Choose Editors To Assign</h5>
 	                    <select class="form-control" name="editor" id="editor">
-	                        <option>Owen Onions</option>
-	                        <option>Erick Samikwa</option>
+	                        @foreach($users as $user)
+	                        	<option value="{{$user->id}}">{{$user->email}}</option>
+	                        @endforeach
 	                    </select>
 	                    <br/>
 	                    <button class="btn btn-success pull-right">Assign</button>

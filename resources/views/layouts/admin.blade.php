@@ -322,10 +322,10 @@
                             <a href="#"><i class="fa fa fa-folder-open-o fa-fw"></i> Tasks<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="tasks/assign">Assign Tasks</a>
+                                    <a href="/tasks/assign">Assign Tasks</a>
                                 </li>
                                 <li>
-                                    <a href="tasks">View Tasks</a>
+                                    <a href="/tasks">View Tasks</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
