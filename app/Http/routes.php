@@ -18,14 +18,23 @@ Route::get('/', function () {
  Route::get("categories","CategoriesController@index");
  Route::get("categories/create","CategoriesController@create");
  Route::post("categories/new","CategoriesController@newcategory");
+ Route::get("categories/{id}/edit","CategoriesController@edit");
+ Route::post("categories/{id}/update","CategoriesController@update");
 
  Route::get("articles","ArticlesController@index");
  Route::get("articles/create","ArticlesController@create");
- Route::post("articles/new","ArticlesController@newarticle");
+ Route::post("articles/store","ArticlesController@store");
  Route::get("articles/{id}","ArticlesController@show");
+ Route::get("articles/{id}/edit","ArticlesController@edit");
+ Route::post("articles/{id}/update","ArticlesController@update");
 
  Route::get("tasks","TasksController@index");
  Route::get("tasks/assign","TasksController@assign");
+
+ Route::get("admin","AdminsController@index");
+ Route::get("admin/categories","AdminsController@categories");
+ Route::get("admin/articles","AdminsController@articles");
+ Route::get("admin/users","AdminsController@users");
 /*
 |--------------------------------------------------------------------------
 | Application Routes

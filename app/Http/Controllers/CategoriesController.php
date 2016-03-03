@@ -16,7 +16,7 @@ class CategoriesController extends Controller
     	return view("categories.index", compact('categories'));
     }
     function show($id){
-        return $id
+        return $id;
     }
     function create(){
     	return view("categories.create");
@@ -27,6 +27,14 @@ class CategoriesController extends Controller
     	$category->cat_description = $_POST["category_description"];
  		$category->cat_visibility = 0;
  		$category->save();
-    	return redirect("categories");
+    	return redirect("/admin/categories");
+    }
+    function edit($id){
+        $category = Category::where('cat_id', '=', $id)->firstOrFail();
+        return view("categories.edit",compact("category"));
+    }
+    function update($id){
+         $category = Category::where('cat_id', '=', $id)->update(['cat_name'=>$_POST['cat_name'],'cat_description'=>$_POST['cat_description']]);
+         return redirect('/admin/categories');
     }
 }

@@ -5,7 +5,7 @@
 		<article>
 			<h3><a href="/articles/{{$article->article_id}}">{{$article->title}}</a></h3>
 			<div class="body">
-					{{$article->body}}
+					<?= $article->body ?>
 			</div>
 		</article>
 	@endforeach

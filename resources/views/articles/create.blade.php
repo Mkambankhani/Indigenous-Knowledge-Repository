@@ -6,7 +6,10 @@
          </div>
      </div>
      <div class="row">
-                <form id="articleForm" action="/articles/new" method="post">
+                 @if(isset($success))
+                    <div class="alert alert-success"> {{$success}} </div>
+                @endif
+        {!! Form::open(['action'=>'ArticlesController@store', 'files'=>true]) !!}
                     <div class="form-group">
                             <label>Choose Category</label>
                             <select class="form-control" name="category">
@@ -36,28 +39,40 @@
                     </div>
                     <div class="row">
                         <div class="form-group col-lg-3">
-                            <label>Upload Doc</label>
-                            <input type="file" name="document">
+                            {!! Form::label('doc', 'Upload Document') !!}
+                            {!! Form::file('doc') !!}
                         </div>
                          <div class="form-group col-lg-3">
-                            <label>Upload Image</label>
-                            <input type="file" name="image">
+                            {!! Form::label('image', 'Upload Image') !!}
+                            {!! Form::file('image') !!}
                         </div>
                         <div class="form-group col-lg-3">
-                            <label>Upload Video</label>
-                            <input type="file" name="video">
+                            {!! Form::label('video', 'Upload Video') !!}
+                            {!! Form::file('video') !!}
                         </div>
 
                     </div>
                     
                     <div class="form-group"><button type="submit" class="btn btn-success">Add</button><a onclick="reset()" class="btn btn-warning pull-right">Reset</a></div>
-                </form>
+                {!! Form::close() !!}
             </div>
 <script type="text/javascript">
+    var form = document.getElementById("articleForm"); 
+    var request = XMLHttpRequest();
+    form.addEventListener('submit', function(e){
+        e.preventDefault();
+        var formdata = new FormData(form);
+        request.open("post", '/articles/new');
+        request.addEventListener("load",transferComplete);
+        request.send(formdata);
+    });
+    function transferComplete(data){
+        console.log(data.currentTarget.response);
+    }
 	function reset(){
 
 	}
-	$("categoryForm").submit(function (e){
+	/*$("categoryForm").submit(function (e){
 
          if(isBlank("name") && isBlank("body")){
 
@@ -67,7 +82,7 @@
             e.preventDefault();
 
           }
-      });
+      });*/
 	function isBlank(inputName){
 		if($("#inputName").val().length = 0){
 			return false;
