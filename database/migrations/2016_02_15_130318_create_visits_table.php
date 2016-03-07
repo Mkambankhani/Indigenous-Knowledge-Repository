@@ -12,8 +12,9 @@ class CreateVisitsTable extends Migration
      */
     public function up()
     {
-        Schema::create('Visit', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('visits', function (Blueprint $table) {
+            $table->increments('visit_id');
+            $table->string('visit_ip_address',100);
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ class CreateVisitsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('Visit');
+        Schema::drop('visits');
     }
 }

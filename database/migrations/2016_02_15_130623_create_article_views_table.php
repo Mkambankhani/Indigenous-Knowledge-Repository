@@ -12,8 +12,9 @@ class CreateArticleViewsTable extends Migration
      */
     public function up()
     {
-        Schema::create('Article_View', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('article_views', function (Blueprint $table) {
+            $table->increments('article_views_id');
+            $table->integer('article_id',false,true)->length(11);
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ class CreateArticleViewsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('Article_View');
+        Schema::drop('article_views');
     }
 }

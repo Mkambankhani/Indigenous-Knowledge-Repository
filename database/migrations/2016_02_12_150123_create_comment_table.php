@@ -12,11 +12,11 @@ class CreateCommentTable extends Migration
      */
     public function up()
     {
-        Schema::create('Comment', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->increments('comment_id');
             $table->text('comment');
-            $table->tinyInteger('visible',1);
-            $table->integer('article_id',11);
+            $table->tinyInteger('visible',false,true)->length(1);
+            $table->integer('article_id',false,true)->length(11);
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateCommentTable extends Migration
      */
     public function down()
     {
-        Schema::drop('Comment');
+        Schema::drop('comments');
     }
 }

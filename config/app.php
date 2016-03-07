@@ -157,6 +157,11 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /*
+         *HTML colection
+        */
+        Collective\Html\HtmlServiceProvider::class,
+
     ],
 
     /*
