@@ -28,4 +28,17 @@ class AdminsController extends Controller
     	$users = Article::all();
     	return view("admin.users",compact("users"));
     }
+    function piechart(){
+        $categories = Category::all();
+        $counts = array();
+        $i = 0;
+        foreach ($categories as $category) {
+            $minarry = array();
+            $minarry['category'] = $category->cat_name;
+            $minarry['count'] = Article::where('cat_id',$category->cat_id)->count();
+            $counts[$i] = $minarry;
+            $i++;
+        }
+        return $counts;
+    }
 }

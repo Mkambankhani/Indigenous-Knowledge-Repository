@@ -95,18 +95,18 @@
                     </div>
               </div>
              <div class="row">
-             		<section class="col-lg-7 ">
+             		<section class="col-lg-6 ">
                           <!-- Custom tabs (Charts with tabs)-->
                               <div class="" id="line-graph" style="position: relative; height: 400px;">Graph Goes Here</div>
 
                         </section>
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-5">
-                                <h4>What Goes Here</h4>
-                                <h5>I have no idea but something much fill this space</h5>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                                <div id="piechart"  class="box box-solid bg-light-blue-gradient" ></div>
 
                         </div>
              </div>
 <script type="text/javascript">
         Graph(getRandomData(),getRandomData(),getRandomData());
+        loadPiechart();
 </script>
 @endsection

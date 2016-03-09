@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateCategoryRequest;
 use App\Category;
 
 class CategoriesController extends Controller
@@ -21,7 +22,7 @@ class CategoriesController extends Controller
     function create(){
     	return view("categories.create");
     }
-    function newcategory(){
+    function newcategory(CreateCategoryRequest $request){
     	$category = new Category;
     	$category->cat_name = $_POST["category_name"];
     	$category->cat_description = $_POST["category_description"];

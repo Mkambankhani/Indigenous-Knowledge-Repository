@@ -55,6 +55,7 @@
                     
                     <div class="form-group"><button type="submit" class="btn btn-success">Add</button><a onclick="reset()" class="btn btn-warning pull-right">Reset</a></div>
                 {!! Form::close() !!}
+                
             </div>
 <script type="text/javascript">
     var form = document.getElementById("articleForm"); 

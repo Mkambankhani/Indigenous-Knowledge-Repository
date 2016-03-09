@@ -23,4 +23,11 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function authored(){
+        return $this->hasMany('App\Article');
+    }
+    public function article_editor(){
+        return $this->hasMany('App\Article_Editor');
+    }
 }

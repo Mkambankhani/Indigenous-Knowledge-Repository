@@ -6,10 +6,12 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateArticleRequest;
 use App\Article;
 use App\User;
 use App\Category;
 use App\Task;
+use App\Article_Editor ;
 Use Storage;
 class ArticlesController extends Controller
 {
@@ -22,7 +24,7 @@ class ArticlesController extends Controller
     	$categories = Category::all();
     	return view("articles.create",compact('users','categories'));
     }
-    function store(Request $request){
+    function store(CreateArticleRequest $request){
     	$article = new Article();
     	$article->title = $_POST["title"];
     	$article->body = $_POST["body"];
@@ -30,13 +32,18 @@ class ArticlesController extends Controller
     	$article->image_url= $this->uploadFile($request,'image','images');
     	$article->video_url= $this->uploadFile($request,'video','videos');
     	$article->document_url= $this->uploadFile($request,'doc','docs');
-    	$article->author_id = 1;
+    	$article->user_id = 1;
     	$article->editor_id= $_POST["editor"];
     	$article->save();
         $task = new Task();
         $task->user_id = $_POST["editor"];
-        $task->article_id = Article::where('title','=',$_POST["title"])->where('cat_id',$_POST["category"])->firstOrFail()->article_id;
+        $article_id = Article::where('title','=',$_POST["title"])->where('cat_id',$_POST["category"])->firstOrFail()->article_id;
+        $task->article_id = $article_id;
         $task->save();
+        $article_editor = new Article_Editor();
+        $article_editor->article_id = $article_id;
+        $article_editor->user_id = $_POST["editor"];
+        $article_editor->save();
     	return redirect("/admin/articles");
     }
     function show($id){
