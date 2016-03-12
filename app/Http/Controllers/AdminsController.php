@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Article;
 use App\User;
 use App\Category;
-
+use App\Visit;
 class AdminsController extends Controller
 {
     //
@@ -39,6 +39,14 @@ class AdminsController extends Controller
             $counts[$i] = $minarry;
             $i++;
         }
+        return $counts;
+    }
+    function panel_data(){
+        $counts = array();
+        $counts['visitors'] = Visit::all()->count();
+        $counts['users'] = User::all()->count();;
+        $counts['authors'] =User::all()->count();;
+        $counts['editors'] = User::all()->count();;
         return $counts;
     }
 }

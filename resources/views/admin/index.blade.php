@@ -14,7 +14,7 @@
                                     <i class="fa  fa-users fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">1205</div>
+                                    <div class="huge" id="visitors">1205</div>
                                     <div>Visitors</div>
                                 </div>
                             </div>
@@ -36,7 +36,7 @@
                                     <i class="fa  fa-users fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">1205</div>
+                                    <div class="huge" id="users">1205</div>
                                     <div>Users</div>
                                 </div>
                             </div>
@@ -58,7 +58,7 @@
                                     <i class="fa  fa-users fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">1205</div>
+                                    <div class="huge" id="authors">1205</div>
                                     <div>Authors</div>
                                 </div>
                             </div>
@@ -80,7 +80,7 @@
                                     <i class="fa  fa-users fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">1205</div>
+                                    <div class="huge" id="editors">1205</div>
                                     <div>Editors</div>
                                 </div>
                             </div>
@@ -107,6 +107,7 @@
              </div>
 <script type="text/javascript">
         Graph(getRandomData(),getRandomData(),getRandomData());
+        loadPanelData();
         loadPiechart();
 </script>
 @endsection

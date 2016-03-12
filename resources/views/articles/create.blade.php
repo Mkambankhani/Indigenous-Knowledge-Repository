@@ -46,10 +46,10 @@
                             {!! Form::label('image', 'Upload Image') !!}
                             {!! Form::file('image') !!}
                         </div>
-                        <div class="form-group col-lg-3">
+                        <!--div class="form-group col-lg-3">
                             {!! Form::label('video', 'Upload Video') !!}
                             {!! Form::file('video') !!}
-                        </div>
+                        </div-->
 
                     </div>
                     

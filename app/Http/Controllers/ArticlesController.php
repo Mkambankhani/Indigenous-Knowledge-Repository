@@ -15,6 +15,7 @@ use App\Article_Editor ;
 Use Storage;
 class ArticlesController extends Controller
 {
+    
     function index(){
     	$articles = Article::all();
     	return view("articles.index", compact("articles"));
@@ -29,9 +30,9 @@ class ArticlesController extends Controller
     	$article->title = $_POST["title"];
     	$article->body = $_POST["body"];
     	$article->cat_id = $_POST["category"];
-    	$article->image_url= $this->uploadFile($request,'image','images');
-    	$article->video_url= $this->uploadFile($request,'video','videos');
-    	$article->document_url= $this->uploadFile($request,'doc','docs');
+    	$article->image_url= $this->uploadFile($request,'image','images',$_POST["title"]);
+    	$article->video_url= $this->uploadFile($request,'video','videos',$_POST["title"]);
+    	$article->document_url= $this->uploadFile($request,'doc','docs',$_POST["title"]);
     	$article->user_id = 1;
     	$article->editor_id= $_POST["editor"];
     	$article->save();
@@ -62,16 +63,16 @@ class ArticlesController extends Controller
        $article->update(['title'=>$_POST['title'], 'body' => $_POST['body'], 'cat_id' => $_POST['category'],'image_url' => $_POST['image'],'video_url' => $_POST['video'], 'editor_id' => $_POST['editor']]);
        return redirect('articles');
     }
-    function uploadFile($request, $name, $path){
+    function uploadFile($request, $name, $path,$title){
 
       $file_entry=""; 
       if($request->file($name) !=null){
             $file = $request->file($name);
             $input = array($name => $file);
             $destinationPath = "uploads/".$path."/";
-            $filename = md5($file->getClientOriginalName()). "." . $file->getClientOriginalExtension();
+            $filename = strtolower(str_replace(" ", "-", $title))."-".$name."." . $file->getClientOriginalExtension();
             $file->move($destinationPath, $filename);
-            $file_entry =$destinationPath."".$filename;
+            $file_entry ="/".$destinationPath."".$filename;
       } 
       return $file_entry;
     }

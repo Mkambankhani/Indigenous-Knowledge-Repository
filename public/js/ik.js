@@ -62,7 +62,7 @@ function drawPieChart(pieData){
 
             // Make monochrome colors and set them as default for all pies
             Highcharts.getOptions().plotOptions.pie.colors = (function () {
-                var colors = ['#00004d', '#000099', '#070d13', '#1a324c', '#346498', '#6797cb', '#b3cbe5', '#ccccff', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4', '#395C9B', '#923532', '#7B972E', '#6A538D', '#3B83A1', '#CB7221', '#F2E200'],
+                var colors = ['#000099', '#070d13', '#1a324c', '#346498', '#6797cb', '#b3cbe5', '#ccccff', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4', '#395C9B', '#923532', '#7B972E', '#6A538D', '#3B83A1', '#CB7221', '#F2E200'],
                     base = Highcharts.getOptions().colors[0],
                     i;
 
@@ -152,5 +152,41 @@ function loadPiechart(){
             }
 
     xmlhttp.open("GET", "/admin/piechart", true);
+    xmlhttp.send();
+}
+function loadPanelData(){
+    var xmlhttp;
+    var result;
+    if (window.XMLHttpRequest) {
+                // code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+    } else {
+                // code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == XMLHttpRequest.DONE) {
+                    if (xmlhttp.status == 200) {
+
+                        result = xmlhttp.responseText;
+                        result = JSON.parse(result);
+                        console.log(result);
+                        $("#visitors").html(result.visitors);
+                        $("#users").html(result.users);
+                         $("#authors").html(result.authors);
+                         $("#editors").html(result.editors);
+
+                    }
+                    else if (xmlhttp.status == 400) {
+                        alert('There was an error 400')
+                    }
+                    else {
+                        alert('something else other than 200 was returned')
+                    }
+                }
+            }
+
+    xmlhttp.open("GET", "/admin/panel_data", true);
     xmlhttp.send();
 }

@@ -36,17 +36,19 @@
             </div>
             <div class="row">
                         <div class="form-group col-lg-3">
+                            <img src="{{$article->image_url}}">
                             <label>Upload Doc</label>
                             <input type="file" name="document">
                         </div>
                          <div class="form-group col-lg-3">
+                            <img src="{{$article->image_url}}">
                             <label>Upload Image</label>
                             <input type="file" name="image">
                         </div>
-                        <div class="form-group col-lg-3">
+                        <!--div class="form-group col-lg-3">
                             <label>Upload Video</label>
                             <input type="file" name="video">
-                        </div>
+                        </div-->
 
                     </div>
                     
