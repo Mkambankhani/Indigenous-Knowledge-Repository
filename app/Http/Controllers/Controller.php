@@ -14,20 +14,20 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     public function __construct()
     {		$ipaddress = '';
-		    if (getenv('HTTP_CLIENT_IP'))
-		        $ipaddress = getenv('HTTP_CLIENT_IP');
-		    else if(getenv('HTTP_X_FORWARDED_FOR'))
-		        $ipaddress = getenv('HTTP_X_FORWARDED_FOR');
-		    else if(getenv('HTTP_X_FORWARDED'))
-		        $ipaddress = getenv('HTTP_X_FORWARDED');
-		    else if(getenv('HTTP_FORWARDED_FOR'))
-		        $ipaddress = getenv('HTTP_FORWARDED_FOR');
-		    else if(getenv('HTTP_FORWARDED'))
-		        $ipaddress = getenv('HTTP_FORWARDED');
-		    else if(getenv('REMOTE_ADDR'))
-		        $ipaddress = getenv('REMOTE_ADDR');
-		    else
-		        $ipaddress = 'UNKNOWN';
+		    if (isset($_SERVER['HTTP_CLIENT_IP']))
+                $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+            else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
+                $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+            else if(isset($_SERVER['HTTP_X_FORWARDED']))
+                $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+            else if(isset($_SERVER['HTTP_FORWARDED_FOR']))
+                $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+            else if(isset($_SERVER['HTTP_FORWARDED']))
+                $ipaddress = $_SERVER['HTTP_FORWARDED'];
+            else if(isset($_SERVER['REMOTE_ADDR']))
+                $ipaddress = $_SERVER['REMOTE_ADDR'];
+            else
+                $ipaddress = 'UNKNOWN';
     		$date_to_day = Carbon::now();
     		$month =$date_to_day->month;
     		if($date_to_day->month < 10){
@@ -37,7 +37,7 @@ class Controller extends BaseController
     		if($date_to_day->day < 10){
     			$day = "0".$date_to_day->day;
     		}
-           	$visit = Visit::where('visit_ip_address',$ipaddress)->where('created_at','REGEXP',"'".$date_to_day->year."-".$month."-".$day."'")->first();
+           	$visit = Visit::where('visit_ip_address',$ipaddress)->where('created_at','LIKE',"%".$date_to_day->year."-".$month."-".$day."%")->first();
             if($visit == null){
 
             	$visit = Visit::create(['visit_ip_address' => $ipaddress]);

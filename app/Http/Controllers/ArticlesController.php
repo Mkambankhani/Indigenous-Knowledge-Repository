@@ -13,6 +13,7 @@ use App\Category;
 use App\Task;
 use App\Article_Editor ;
 Use Storage;
+use App\Article_View;
 class ArticlesController extends Controller
 {
     
@@ -49,6 +50,10 @@ class ArticlesController extends Controller
     }
     function show($id){
     	$article = Article::where('article_id', '=', $id)->firstOrFail();
+        $article_view = new Article_View();
+        $article_view->article_id = $article->article_id;
+        $article_view->cat_id = $article->cat_id;
+        $article_view->save();
     	return view("articles.show", compact("article"));
     }
     function edit($id){

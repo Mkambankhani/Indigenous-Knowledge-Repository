@@ -39,6 +39,7 @@ Route::get('/', function () {
  /*Routes for Dashboard Data*/
  Route::get("admin/piechart","AdminsController@piechart");
   Route::get("admin/panel_data","AdminsController@panel_data");
+  Route::get("admin/graph_data","AdminsController@graph_data");
 /*
 |--------------------------------------------------------------------------
 | Application Routes
