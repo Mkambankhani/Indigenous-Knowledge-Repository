@@ -5,7 +5,7 @@ function getRandomData(){
         }
         return data;
 }
-function Graph(data1,data2,data3){
+function Graph(data){
            $('#line-graph').highcharts({
             title: {
                 text: 'Monthly',
@@ -38,18 +38,7 @@ function Graph(data1,data2,data3){
                 verticalAlign: 'bottom',
                 borderWidth: 1
             },
-            series: [{
-                name: 'Category 1',
-                data: data1
-            },{
-                name: 'Category 2',
-                data: data2,
-                color: 'red'
-            },{
-                name: 'Category 3',
-                data: data3,
-                color: 'green'
-            }]
+            series: data
         });
 
     }
@@ -188,5 +177,38 @@ function loadPanelData(){
             }
 
     xmlhttp.open("GET", "/admin/panel_data", true);
+    xmlhttp.send();
+}
+function loadGraph(){
+      var xmlhttp;
+    var result;
+    if (window.XMLHttpRequest) {
+                // code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+    } else {
+                // code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == XMLHttpRequest.DONE) {
+                    if (xmlhttp.status == 200) {
+
+                        result = xmlhttp.responseText;
+                        result = JSON.parse(result);
+                        console.log(result);
+                        Graph(result);
+
+                    }
+                    else if (xmlhttp.status == 400) {
+                        alert('There was an error 400')
+                    }
+                    else {
+                        alert('something else other than 200 was returned')
+                    }
+                }
+            }
+
+    xmlhttp.open("GET", "/admin/graph_data", true);
     xmlhttp.send();
 }

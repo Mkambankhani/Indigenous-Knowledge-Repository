@@ -106,8 +106,8 @@
                         </div>
              </div>
 <script type="text/javascript">
-        Graph(getRandomData(),getRandomData(),getRandomData());
         loadPanelData();
         loadPiechart();
+        loadGraph();
 </script>
 @endsection
