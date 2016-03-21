@@ -15,6 +15,31 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+ Route::get("categories","CategoriesController@index");
+ Route::get("categories/create","CategoriesController@create");
+ Route::post("categories/new","CategoriesController@newcategory");
+ Route::get("categories/{id}/edit","CategoriesController@edit");
+ Route::post("categories/{id}/update","CategoriesController@update");
+
+ Route::get("articles","ArticlesController@index");
+ Route::get("articles/create","ArticlesController@create");
+ Route::post("articles/store","ArticlesController@store");
+ Route::get("articles/{id}","ArticlesController@show");
+ Route::get("articles/{id}/edit","ArticlesController@edit");
+ Route::post("articles/{id}/update","ArticlesController@update");
+
+ Route::get("tasks","TasksController@index");
+ Route::get("tasks/assign","TasksController@assign");
+
+ Route::get("admin","AdminsController@index");
+ Route::get("admin/categories","AdminsController@categories");
+ Route::get("admin/articles","AdminsController@articles");
+ Route::get("admin/users","AdminsController@users");
+
+ /*Routes for Dashboard Data*/
+ Route::get("admin/piechart","AdminsController@piechart");
+  Route::get("admin/panel_data","AdminsController@panel_data");
+  Route::get("admin/graph_data","AdminsController@graph_data");
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -34,4 +59,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::auth();
 
     Route::get('/home', 'HomeController@index');
+
 });
+
+
