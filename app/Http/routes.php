@@ -31,7 +31,7 @@ Route::get('/', function () {
  Route::get("tasks","TasksController@index");
  Route::get("tasks/assign","TasksController@assign");
 
- Route::get("admin","AdminsController@index");
+ Route::get("adminpanel","AdminsController@index");
  Route::get("admin/categories","AdminsController@categories");
  Route::get("admin/articles","AdminsController@articles");
  Route::get("admin/users","AdminsController@users");
