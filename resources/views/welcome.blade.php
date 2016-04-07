@@ -45,26 +45,23 @@
 
     <!-- Content Row -->
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4" id="recent_entry">
 
             <p><b>Recent Entries</b></p>
-
-            <p class="slik"><a><small>Lorem ipsum dolor sit amet, consectetur adipisicing</small></a> </p>
-            <p class="slik"><a><small>Lorem ipsum dolor sit amet, consectetur adipisicing</small></a> </p>
-            <p class="slik"><a><small>Lorem ipsum dolor sit amet, consectetur adipisicing</small></a> </p>
-            <p class="slik"><a><small>Lorem ipsum dolor sit amet, consectetur adipisicing</small></a> </p>
+            @foreach($recent as $item)
+               <p class="slik"><a href="/articles/{{$item->article_id}}"><small>{{$item->title}}</small></a> </p>
+            @endforeach
             <br />
 
             <a class="btn btn-default" href="#">More Entries</a>
         </div>
         <!-- /.col-md-4 -->
-        <div class="col-md-4">
+        <div class="col-md-4" id="most_viewed">
 
             <p><b>Most Viewed</b></p>
-            <p class="slik"><a><small>Lorem ipsum dolor sit amet, consectetur adipisicing</small></a> </p>
-            <p class="slik"><a><small>Lorem ipsum dolor sit amet, consectetur adipisicing</small></a> </p>
-            <p class="slik"><a><small>Lorem ipsum dolor sit amet, consectetur adipisicing</small></a> </p>
-            <p class="slik"><a><small>Lorem ipsum dolor sit amet, consectetur adipisicing</small></a> </p>
+            @foreach($most_visit as $item)
+               <p class="slik"><a href="/articles/{{$item->article_id}}"><small>{{$item->title}}</small>(<span>{{$item->aggregate}}</span>)</a> </p>
+            @endforeach
             <br />
             <a class="btn btn-default" href="#">More Entries</a>
         </div>
@@ -110,4 +107,7 @@
     <!-- /.row -->
 
     <hr />
+    <script type="text/javascript">
+
+    </script>
 @endsection

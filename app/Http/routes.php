@@ -11,10 +11,15 @@
 |
 */
 
+/***Tempory Code**/
+use App\Article;
+use App\Article_View;
 Route::get('/', function () {
-    return view('welcome');
+    $recent = Article::orderBy('created_at','desc')->limit(5)->get();
+    $most_visit = Article_View::select(DB::raw('articles.title,article__views.article_id, count(*) as `aggregate`'))->join('articles', 'article__views.article_id', '=', 'articles.article_id')->groupBy('article_id')->orderBy('aggregate', 'desc')->limit(5)->get();
+    return view('welcome',compact('recent','most_visit'));
 });
-
+/**end of Temporary Code*/
  Route::get("categories","CategoriesController@index");
  Route::get("categories/create","CategoriesController@create");
  Route::post("categories/new","CategoriesController@newcategory");
@@ -24,9 +29,12 @@ Route::get('/', function () {
  Route::get("articles","ArticlesController@index");
  Route::get("articles/create","ArticlesController@create");
  Route::post("articles/store","ArticlesController@store");
+ Route::get("/articles/recent","ArticlesController@recent");
+ Route::get("/articles/most_view","ArticlesController@most_view");
  Route::get("articles/{id}","ArticlesController@show");
  Route::get("articles/{id}/edit","ArticlesController@edit");
  Route::post("articles/{id}/update","ArticlesController@update");
+
 
  Route::get("tasks","TasksController@index");
  Route::get("tasks/assign","TasksController@assign");

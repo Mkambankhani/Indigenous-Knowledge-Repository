@@ -68,6 +68,14 @@ class ArticlesController extends Controller
        $article->update(['title'=>$_POST['title'], 'body' => $_POST['body'], 'cat_id' => $_POST['category'],'image_url' => $_POST['image'],'video_url' => $_POST['video'], 'editor_id' => $_POST['editor']]);
        return redirect('articles');
     }
+    function recent(){
+       $articles = Article::orderBy('created_at','desc')->limit(5)->get();
+       return $articles;
+    }
+    function most_view(){
+        $aggregates = Article_View::select(DB::raw('article__views.article_id, count(*) as `aggregate`'))->groupBy('article_id')->orderBy('aggregate', 'desc')->limit(5)->get();
+        return $aggregates;
+    }
     function uploadFile($request, $name, $path,$title){
 
       $file_entry=""; 

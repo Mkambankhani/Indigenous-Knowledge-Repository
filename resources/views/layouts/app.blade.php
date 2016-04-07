@@ -49,6 +49,11 @@ F e b r u a r y   2 0 1 6
     <script>
         $('.dropdown-toggle').dropdown();
     </script>
+    <style type="text/css">
+            .navbar-brand{
+                font-style: normal;
+            }
+    </style>
 
 </head>
 <body id="app-layout">
@@ -73,7 +78,7 @@ F e b r u a r y   2 0 1 6
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}">Home</a></li>
+                    <li><a href="{{ url('/home') }}"></a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
