@@ -14,11 +14,19 @@ use App\Task;
 use App\Article_Editor ;
 Use Storage;
 use App\Article_View;
+use DB;
 class ArticlesController extends Controller
 {
     
     function index(){
-    	$articles = Article::all();
+        $rticles = null;
+        if(isset($_GET['order']) && $_GET['order']=="most_visited"){
+            $articles = Article::select(DB::raw('articles.*, count(*) as `aggregate`'))->join('article__views', 'article__views.article_id', '=', 'articles.article_id')->groupBy('article_id')->orderBy('aggregate', 'desc')->get();
+        }
+        else{
+            $articles = Article::orderBy('created_at','desc')->get();
+        }
+    	
     	return view("articles.index", compact("articles"));
     }
     function create(){
@@ -68,6 +76,7 @@ class ArticlesController extends Controller
        $article->update(['title'=>$_POST['title'], 'body' => $_POST['body'], 'cat_id' => $_POST['category'],'image_url' => $_POST['image'],'video_url' => $_POST['video'], 'editor_id' => $_POST['editor']]);
        return redirect('articles');
     }
+
     function recent(){
        $articles = Article::orderBy('created_at','desc')->limit(5)->get();
        return $articles;
@@ -75,6 +84,32 @@ class ArticlesController extends Controller
     function most_view(){
         $aggregates = Article_View::select(DB::raw('article__views.article_id, count(*) as `aggregate`'))->groupBy('article_id')->orderBy('aggregate', 'desc')->limit(5)->get();
         return $aggregates;
+    }
+    function search(){
+        return $_POST['key_words'];
+    }
+    function visible($id){
+        $article = Article::where('article_id', '=', $id);
+        if($article->update(['visible'=>true])){
+            return redirect("/admin/articles");
+        }
+        else{
+            return "Fail";
+        }
+
+    }
+     function delete($id){
+        $article = Article::where('article_id', '=', $id);
+        if($article->delete()){
+            return redirect("/admin/articles");
+        }
+        else{
+            return "Fail to Delete";
+        }
+    }
+    function find(){
+        $article = Article::where('article_id', '=', $_GET['id'])->firstOrFail();
+        return $article;
     }
     function uploadFile($request, $name, $path,$title){
 

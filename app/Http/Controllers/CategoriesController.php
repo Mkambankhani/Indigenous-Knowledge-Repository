@@ -38,4 +38,26 @@ class CategoriesController extends Controller
          $category = Category::where('cat_id', '=', $id)->update(['cat_name'=>$_POST['cat_name'],'cat_description'=>$_POST['cat_description']]);
          return redirect('/admin/categories');
     }
+    function visible($id){
+        $category = Category::where('cat_id', '=', $id);
+        if($category->update(['cat_visibility'=>true])){
+            return redirect("/admin/categories");
+        }
+        else{
+            return "Fail";
+        }
+    }
+    function delete($id){
+        $category = Category::where('cat_id', '=', $id);
+        if($category->delete()){
+            return redirect("/admin/categories");
+        }
+        else{
+            return "Fail";
+        }
+    }
+    function find(){
+        $category = Category::where('cat_id', '=', $_GET['id'])->firstOrFail();
+        return $category;
+    }
 }

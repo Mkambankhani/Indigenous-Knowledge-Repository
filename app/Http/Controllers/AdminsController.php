@@ -26,7 +26,11 @@ class AdminsController extends Controller
     	$articles = Article::all();
     	return view("admin.articles",compact("articles"));
     }
-     function users(){
+    function article_show($id){
+        $article = Article::where('article_id', '=', $id)->firstOrFail();
+        return view("admin.article_show",compact("article"));
+    }
+    function users(){
     	$users = Article::all();
     	return view("admin.users",compact("users"));
     }

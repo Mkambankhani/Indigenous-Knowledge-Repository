@@ -18,7 +18,7 @@
 
 
         <div class="col-lg-12">
-            <form action="" method="post">
+            <form action="/articles/search" method="post">
 
                 <div class="input-group input-group-lg col-lg-offset-2 col-lg-8 col-lg-offset-2">
 
@@ -26,7 +26,7 @@
                                        <i class="fa fa-pencil-square-o"></i>
                                    </span>
 
-                    <input type="text" class="form-control" placeholder="Find what you are looking for ..." aria-describedby="basic-addon1" name="main_search">
+                    <input type="text" name="key_words" class="form-control" placeholder="Find what you are looking for ..." aria-describedby="basic-addon1" name="main_search">
 
                 </div><br />
 
@@ -53,7 +53,7 @@
             @endforeach
             <br />
 
-            <a class="btn btn-default" href="#">More Entries</a>
+            <a class="btn btn-default" href="/articles?order=recent">More Entries</a>
         </div>
         <!-- /.col-md-4 -->
         <div class="col-md-4" id="most_viewed">
@@ -63,7 +63,7 @@
                <p class="slik"><a href="/articles/{{$item->article_id}}"><small>{{$item->title}}</small>(<span>{{$item->aggregate}}</span>)</a> </p>
             @endforeach
             <br />
-            <a class="btn btn-default" href="#">More Entries</a>
+            <a class="btn btn-default" href="/articles?order=most_visited">More Entries</a>
         </div>
         <!-- /.col-md-4 -->
         <div class="col-md-4">

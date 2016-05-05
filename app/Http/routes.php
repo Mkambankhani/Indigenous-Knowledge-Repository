@@ -23,16 +23,24 @@ Route::get('/', function () {
  Route::get("categories","CategoriesController@index");
  Route::get("categories/create","CategoriesController@create");
  Route::post("categories/new","CategoriesController@newcategory");
+ Route::get("/categories/find", "CategoriesController@find");
  Route::get("categories/{id}/edit","CategoriesController@edit");
+ Route::get("categories/{id}/visible","CategoriesController@visible");
+ Route::get("categories/{id}/delete","CategoriesController@delete");
  Route::post("categories/{id}/update","CategoriesController@update");
 
  Route::get("articles","ArticlesController@index");
  Route::get("articles/create","ArticlesController@create");
  Route::post("articles/store","ArticlesController@store");
  Route::get("/articles/recent","ArticlesController@recent");
+ Route::post("/articles/search", "ArticlesController@search");
+ Route::get("/articles/find", "ArticlesController@find");
+ Route::post("/articles/find", "ArticlesController@find");
  Route::get("/articles/most_view","ArticlesController@most_view");
  Route::get("articles/{id}","ArticlesController@show");
  Route::get("articles/{id}/edit","ArticlesController@edit");
+ Route::get("articles/{id}/visible","ArticlesController@visible");
+  Route::get("articles/{id}/delete","ArticlesController@delete");
  Route::post("articles/{id}/update","ArticlesController@update");
 
 
@@ -42,6 +50,7 @@ Route::get('/', function () {
  Route::get("adminpanel","AdminsController@index");
  Route::get("admin/categories","AdminsController@categories");
  Route::get("admin/articles","AdminsController@articles");
+ Route::get("admin/articles/{id}","AdminsController@article_show");
  Route::get("admin/users","AdminsController@users");
 
  /*Routes for Dashboard Data*/

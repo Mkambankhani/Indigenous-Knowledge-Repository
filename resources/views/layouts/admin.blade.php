@@ -318,7 +318,7 @@
                             <!-- /.nav-second-level -->
                         </li>
 
-                         <li>
+                         <!--li>
                             <a href="#"><i class="fa fa fa-folder-open-o fa-fw"></i> Tasks<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
@@ -328,8 +328,8 @@
                                     <a href="/tasks">View Tasks</a>
                                 </li>
                             </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
+                            <! /.nav-second-level -->
+                        <!--/li -->
                         <li>
                             <a href="#"><i class="fa fa-user fa-fw"></i> Manage Users<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -343,7 +343,10 @@
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Reports<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="/tasks/assign">Article Views</a>
+                                    <a href="/admin/articles/view">Article Views</a>
+                                </li>
+                                <li>
+                                    <a href="/admin/articles/added">Article Added</a>
                                 </li>
                                 <li>
                                     <a href="/tasks">Registered Users</a>
